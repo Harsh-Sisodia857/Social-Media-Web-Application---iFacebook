@@ -14,12 +14,18 @@ module.exports.posts = function (req, res) {
 }
 
 module.exports.signUp = function (req, res) {
+    if (req.isAuthenticated()) {
+       return res.redirect('/users/profile');
+    }
     res.render('user_signUp', {
         title : "iFacebook | Sign-Up"
     })
 }
 
 module.exports.signIn = function (req, res) {
+    if (req.isAuthenticated()) {
+       return res.redirect('/users/profile');
+    }
     res.render('user_signIn', {
         title: "iFacebook | Sign-In"
     })
@@ -54,5 +60,5 @@ module.exports.createUser = function (req, res) {
 
 // Sign in and create session
 module.exports.createSession = function (req, res) {
-    // TODO
+    return res.redirect('/');
 }
