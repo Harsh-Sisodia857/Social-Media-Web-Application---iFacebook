@@ -31,6 +31,15 @@ module.exports.signIn = function (req, res) {
     })
 }
 
+module.exports.destroySession = function (req, res,next) {
+    req.logout(function (err) {
+        if (err) {
+            return next(err);
+        }
+        res.redirect("/");
+    });
+};
+
 // creating user
 module.exports.createUser = function (req, res) {
     if (req.body.password != req.body.confirm_password) {
