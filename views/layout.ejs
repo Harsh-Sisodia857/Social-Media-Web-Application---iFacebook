@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <!-- this path in link is according to the static path mentioned in the index.js -->
+    <link rel="stylesheet" href="/css/layout.css">
+
+    <!-- use <%- style %> where you want to include the style link in individual file, this can be above layout.css file also. This feature comes due to - app.set('layout extractStyles', true); in the index.js file -->
+    <%- style %>
+</head>
+
+<body>
+    <%- include('_header'); %>
+        <%- body %>
+    <%- include('_footer'); %>
+
+    <%- script %>
+</body>
+
+</html>
