@@ -7,11 +7,7 @@ module.exports.profile = function (req, res) {
     });
 }
 
-module.exports.posts = function (req, res) {
-    res.render('userProfile', {
-        title : "User Posts"
-    });
-}
+
 
 module.exports.signUp = function (req, res) {
     if (req.isAuthenticated()) {

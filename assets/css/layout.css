@@ -1,2 +1,5 @@
 body {
-  margin: 0; }
+  margin: 0;
+  background-color: #eaf8fd; }
+  body #layout-main {
+    height: 100vh; }

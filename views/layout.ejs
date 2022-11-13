@@ -10,15 +10,18 @@
     </title>
     <!-- this path in link is according to the static path mentioned in the index.js -->
     <link rel="stylesheet" href="/css/layout.css">
-
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <!-- use <%- style %> where you want to include the style link in individual file, this can be above layout.css file also. This feature comes due to - app.set('layout extractStyles', true); in the index.js file -->
     <%- style %>
 </head>
 
 <body>
     <%- include('_header'); %>
-
+   
+    <div id="layout-main">
         <%- body %>
+    </div>
 
     <%- include('_footer'); %>
 
