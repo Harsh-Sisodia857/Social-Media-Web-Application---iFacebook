@@ -2,10 +2,29 @@
     iFacebook <%= title %>
 </h1>
 
-<section id="feed-posts">
-    <h3>Posts</h3>
-    <form action="/posts/create" id="new-post-form" method="POST">
-        <textarea name="content" cols="30" rows="10" placeholder="Type here..."></textarea>
-        <input type="submit" value="Post">
-    </form>
-</section>
+<% if(locals.user) { %>
+    <section id="feed-posts">
+        <h3>Posts</h3>
+        <form action="/posts/create" id="new-post-form" method="POST">
+            <textarea name="content" cols="30" rows="10" placeholder="Type here..."></textarea>
+            <input type="submit" value="Post">
+        </form>
+    </section>
+<%} %>
+
+<div class="post-list-container">
+    <h1>Posts</h1>
+    <ul>
+        <% for(post of posts) {%>
+        <li>
+            <p>
+                <%= post.content %>
+                <br>
+                    <small>
+                        <%= post.user.name %> 
+                    </small>
+            </p>
+        </li>
+        <%} %>
+    </ul>
+</div>
