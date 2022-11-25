@@ -33,14 +33,13 @@ module.exports.home = async function (req, res) {
             }
         })
         const users = await User.find({});
-
         return res.render('home', {
             title: "Home",
             posts,
             all_users: users
         });
     } catch (err) {
-        console.log("Error : ",err);
+        req.flash("error : ",err);
         return;
    }
 }

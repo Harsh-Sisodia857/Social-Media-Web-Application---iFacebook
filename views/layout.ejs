@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="/css/footer.css">
     <!-- use <%- style %> where you want to include the style link in individual file, this can be above layout.css file also. This feature comes due to - app.set('layout extractStyles', true); in the index.js file -->
     <%- style %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 </head>
 
 <body>
@@ -27,6 +31,28 @@
 
     <!-- Similar to style  -->
     <%- script %>
+    <script>
+             <% if (flash.success && flash.success.length > 0) { %>
+            new Noty({
+                theme: 'relax',
+                text: "<%= flash.success %>",
+                type: 'success',
+                layout: 'topRight',
+                timeout: 1500
+            }).show();
+        <% } %> 
+        
+        <% if (flash.error && flash.error.length > 0) { %>
+            new Noty({
+                theme: 'relax',
+                text: "<%= flash.error %>",
+                type: 'error',
+                layout: 'topRight',
+                timeout: 1500
+            }).show();
+        <% } %> 
+    </script>
+
 </body>
 
 </html>
