@@ -1,21 +1,18 @@
 const User = require('../models/user')
 
 
-module.exports.profile = function (req, res) {
-    User.findById(req.params.id, function (err, user) {
+module.exports.profile =async function (req, res) {
+    const user = await User.findById(req.params.id)
         res.render('userProfile', {
             title: "User Profile",
-            profile_user : user
+            profile_user: user
         });
-       
-   })
 }
 
-module.exports.update = function (req, res) {
+module.exports.update = async function (req, res) {
     if (req.user.id == req.params.id) {
-        User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
-            return res.redirect('back');
-        })
+        await User.findByIdAndUpdate(req.params.id, req.body)
+        return res.redirect('back')
     }
     else {
         return res.status(401).send('Unauthorized')
@@ -51,16 +48,12 @@ module.exports.destroySession = function (req, res,next) {
 };
 
 // creating user
-module.exports.createUser = function (req, res) {
+module.exports.createUser =async function (req, res) {
     if (req.body.password != req.body.confirm_password) {
         return res.redirect('back');
     }
-
-    User.findOne({ email: req.body.email }, function (err, user) {
-        if (err) {
-            console.log("error in finding user in signing up");
-            return;
-        }
+    try {
+        const user = await User.findOne({ email: req.body.email })
         if (!user) {
             User.create(req.body, function (err, user) {
                 if (err) {
@@ -73,8 +66,11 @@ module.exports.createUser = function (req, res) {
         else {
             return res.redirect('back');
         }
-    })
-
+    }
+    catch (err) {
+        console.log('Error', err);
+        return;
+    }
 }
 
 // Sign in and create session

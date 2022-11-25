@@ -2,7 +2,7 @@ const Post = require('../models/post')
 const User = require('../models/user')
 
 
-module.exports.home = function (req, res) {
+module.exports.home = async function (req, res) {
     // model of post --------------------------------------------------------------------------
     // const postSchema = new mongoose.Schema({
     //     content: {
@@ -25,19 +25,22 @@ module.exports.home = function (req, res) {
     // })
     // -------------------------------------------------------------------------
     // from post first we populate the user(fetch the user detail using its id) then we populate the comments and also show showing  the user's name who comment for that we also populate user from the comment
-    Post.find({}).populate('user').populate({
-        path: 'comments',
-        populate: {
-            path : 'user'
-        }
-    }).exec(function (err, posts) {
-        User.find({}, function (err, users) {
-            return res.render('home', {
-                title: "Home",
-                posts,
-                all_users : users
-            });
-            
+    try {
+        const posts = await Post.find({}).populate('user').populate({
+            path: 'comments',
+            populate: {
+                path: 'user'
+            }
         })
-    })
+        const users = await User.find({});
+
+        return res.render('home', {
+            title: "Home",
+            posts,
+            all_users: users
+        });
+    } catch (err) {
+        console.log("Error : ",err);
+        return;
+   }
 }
