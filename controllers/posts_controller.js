@@ -9,6 +9,16 @@ module.exports.createPost = async function (req, res) {
             //user comes from req.locals.user
             user: req.user._id
         })
+        //if request is ajax request, type of ajax request is xml Http request(xhr)
+        if (req.xhr) {
+            return res.status(200).json({
+                data: {
+                    post: post,                   
+                },
+                message : "Post Created!"
+            })
+        }
+
         req.flash('success', "Post Created");
         return res.redirect('back');
     } catch (err) {
