@@ -3,6 +3,7 @@
   background: #aa9e9e;
   padding: 5px 10px;
   display: flex;
+  display: none;
   justify-content: flex-start; }
   #layout-footer a {
     color: white;

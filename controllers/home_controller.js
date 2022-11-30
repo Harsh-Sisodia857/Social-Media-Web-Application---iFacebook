@@ -26,7 +26,7 @@ module.exports.home = async function (req, res) {
     // -------------------------------------------------------------------------
     // from post first we populate the user(fetch the user detail using its id) then we populate the comments and also show showing  the user's name who comment for that we also populate user from the comment
     try {
-        const posts = await Post.find({}).populate('user').populate({
+        const posts = await Post.find({}).sort('-createdAt').populate('user').populate({
             path: 'comments',
             populate: {
                 path: 'user'

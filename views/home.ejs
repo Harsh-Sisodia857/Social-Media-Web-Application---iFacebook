@@ -7,18 +7,17 @@
                 <textarea name="content" cols="30" rows="10" placeholder="Type here..."></textarea><br>
                 <input type="submit" value="Post">
             </form>
-            <div class="post-list-container">
-                <h1>Posts</h1>
+            <h1>Posts</h1>
+            <div id="post-list-container">
             
+                <ul>
                 <% for(post of posts) {%>
-                    <ul>
-                        <li>
+                        <li id="post-<%= post._id %>">
                             <%-include('_post')-%>
                         </li>
-                    </ul>
-                    <%-include('_comment')-%>
-            
+                        <%-include('_comment')-%>
                         <%} %>
+                </ul>
             </div>
         </section>
         <%} %>
@@ -37,3 +36,4 @@
             </section>
 </div>
 <script src="/js/home_post.js"></script>
+<script src="/js/home_post_comment.js"></script>
