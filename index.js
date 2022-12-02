@@ -30,6 +30,8 @@ app.use(cookieParser());
 // where to look static files like css,js
 app.use(express.static('./assets'))
 
+//make the uploads path available to the browser
+app.use('/uploads',express.static(__dirname + '/uploads'))
 
 // this line must be above the routes line (line no. 11 in this case) because in the routes all the views are going to be render and before that we have to tell to the browser the layout
 app.use(expressLayout)
