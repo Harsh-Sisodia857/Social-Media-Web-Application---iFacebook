@@ -71,15 +71,17 @@ module.exports.signIn = function (req, res) {
     })
 }
 
-module.exports.destroySession = function (req, res,next) {
-    req.logout(function (err) {
-        if (err) {
-            return next(err);
-        }
-        req.flash('success', "Logged Out Successfully");
-        res.redirect("/");
-    });
-
+module.exports.destroySession = function (req, res, next) {
+    req.logout();
+    req.flash('success', 'You have logged out!');
+    return res.redirect('/');
+    // req.logout(function (err) {
+    //     if (err) {
+    //         return next(err);
+    //     }
+    //     req.flash('success', "Logged Out Successfully");
+    //     res.redirect("/");
+    // });
 };
 
 // creating user
