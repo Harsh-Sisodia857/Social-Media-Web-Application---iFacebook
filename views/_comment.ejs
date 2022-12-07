@@ -7,15 +7,14 @@
             <input type="submit" value="Add Comment">
         </form>
         <%} %>
-
             <div class="post-comments-list">
-                <ul id="post-comment-<%= post._id %>">
+                <ul id="post-<%= post._id %>-comments-form">
                     <% for(comment of post.comments){ %>
                         <li>
                             <p>
                                 <% if(locals.user && locals.user.id==post.user.id) { %>
                                     <small>
-                                        <a href="comment/destroy/<%= comment.id %>">X</a>
+                                        <a class="delete-comment-button" href="comment/destroy/<%= comment.id %>">X</a>
                                     </small>
                                     <%} %>
                                         <%= comment.content %>

@@ -14,9 +14,9 @@
                 <% for(post of posts) {%>
                         <li id="post-<%= post._id %>">
                             <%-include('_post')-%>
+                            <%-include('_comment')-%>
                         </li>
-                        <%-include('_comment')-%>
-                        <%} %>
+                            <%} %>
                 </ul>
             </div>
         </section>
@@ -35,5 +35,4 @@
                     <%} %>
             </section>
 </div>
-<script src="/js/home_post.js"></script>
-<script src="/js/home_post_comment.js"></script>
+ <script src="/js/home_post.js"></script>
