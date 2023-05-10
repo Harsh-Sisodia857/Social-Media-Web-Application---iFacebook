@@ -9,15 +9,7 @@ module.exports.profile =async function (req, res) {
             profile_user: user
         });
 }
-function isEmptyDir(dirnane) {
-    try {
-        fs.rmdirSync(dirname)
-    }
-    catch (err) {
-        return false;
-    }
-    return true;
-}
+
 
 module.exports.update = async function (req, res) {
     if (req.user.id == req.params.id) {

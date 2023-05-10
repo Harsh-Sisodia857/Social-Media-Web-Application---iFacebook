@@ -17,3 +17,4 @@ exports.newComment = (comment) => {
         return;
     })
 }
+
